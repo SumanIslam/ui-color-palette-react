@@ -5,4 +5,37 @@
   display: inline-block;
   position: relative;
   cursor: pointer;
+  text-transform: uppercase;
+  margin-bottom: -3.7px;
+}
+.box-content {
+  position: absolute;
+  left: 0.3rem;
+  bottom: 0.3rem;
+}
+.copy-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  color: #fff;
+  border: 1px solid #ebe3e3;
+  border-radius: 5px;
+  padding: 0.4rem 1.8rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: all .2s ease-out;
+}
+.see-more {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(255,255,255,.3);
+  padding: 0.2rem 0.8rem;
+}
+
+.ColorBox:hover .copy-button {
+  opacity: 1;
 }
