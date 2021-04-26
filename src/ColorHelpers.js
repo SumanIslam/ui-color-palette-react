@@ -41,6 +41,4 @@ function generateScale(hexColor, numberOfColors) {
   return chroma.scale(getRange(hexColor)).mode("lab").colors(numberOfColors);
 }
 
-// generatePalette(starterPalette);
-// console.log(oldPalette)
 export {generatePalette};

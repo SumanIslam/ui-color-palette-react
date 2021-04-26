@@ -6,12 +6,14 @@
   position: relative;
   cursor: pointer;
   text-transform: uppercase;
-  margin-bottom: -3.7px;
+  margin-bottom: -4px;
 }
 .box-content {
   position: absolute;
   left: 0.3rem;
   bottom: 0.3rem;
+  font-size: 13px;
+  letter-spacing: 1px;
 }
 .copy-button {
   position: absolute;
@@ -51,7 +53,7 @@
   position: absolute;
   opacity: 1;
   z-index: 10;
-  transform: scale(20);
+  transform: scale(50);
 }
 
 .copy-msg {
@@ -66,7 +68,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   transform: scale(0.1);
   color: #fff;
 }

@@ -5,28 +5,4 @@
 .Palette-colors {
   height: 90vh;
 }
-.slider {
-  width: 300px;
-  /* margin: 0 1rem; */
-  margin: 1rem;
-}
-.rc-slider-rail {
-  height: 8px;
-}
 
-.rc-slider-track {
-  background: transparent;
-}
-
-.rc-slider-handle,
-.rc-slider-handle:hover,
-.rc-slider-handle:focus,
-.rc-slider-handle:active {
-  background: green;
-  outline: 0;
-  border: 2px solid green;
-  box-shadow: none;
-  width: 13px;
-  height: 13px;
-  margin-top: -3px;
-}
