@@ -4,6 +4,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 
 // styles
 import "./ColorBox.css";
+
 class ColorBox extends Component {
   static defaultProps = {
     copyMessage: [
@@ -25,7 +26,7 @@ class ColorBox extends Component {
     this.setState({ copied: true }, () =>
       setTimeout(() => {
         this.setState({ copied: false });
-      }, 1600)
+      }, 1500)
     );
   }
   render() {
@@ -35,7 +36,7 @@ class ColorBox extends Component {
       Math.floor(Math.random() * 6)
     ];
     return (
-      <CopyToClipboard text={name} onCopy={this.handleCopy}>
+      <CopyToClipboard text={background} onCopy={this.handleCopy}>
         <div className="ColorBox" style={{ background }}>
           <div
             className={`copy-overlay ${copied && "show"}`}

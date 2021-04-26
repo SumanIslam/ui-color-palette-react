@@ -1,33 +1,5 @@
 import chroma from "chroma-js";
 
-const starterPalette = {
-  paletteName: "Flat UI Colors Dutch",
-  id: "flat-ui-colors-dutch",
-  emoji: "🇳🇱",
-  colors: [
-    { name: "Sunflower", color: "#FFC312" },
-    { name: "Energos", color: "#C4E538" },
-    { name: "BlueMartina", color: "#12CBC4" },
-    { name: "LavenderRose", color: "#FDA7DF" },
-    { name: "BaraRose", color: "#ED4C67" },
-    { name: "RadiantYellow", color: "#F79F1F" },
-    { name: "AndroidGreen", color: "#A3CB38" },
-    { name: "MediterraneanSea", color: "#1289A7" },
-    { name: "LavenderTea", color: "#D980FA" },
-    { name: "VerryBerry", color: "#B53471" },
-    { name: "PuffinsBill", color: "#EE5A24" },
-    { name: "PixelatedGrass", color: "#009432" },
-    { name: "MerchantMarineBlue", color: "#0652DD" },
-    { name: "ForgottenPurple", color: "#9980FA" },
-    { name: "HollyHock", color: "#833471" },
-    { name: "RedPigment", color: "#EA2027" },
-    { name: "TurkishAqua", color: "#006266" },
-    { name: "20000LeaguesUnderTheSea", color: "#1B1464" },
-    { name: "CircumorbitalRing", color: "#5758BB" },
-    { name: "MagentaPurple", color: "#6F1E51" },
-  ],
-};
-
 const levels = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 
 function generatePalette(starterPalette) {
@@ -41,6 +13,7 @@ function generatePalette(starterPalette) {
   for (let level of levels) {
     newPalette.colors[level] = [];
   }
+
   for (let color of starterPalette.colors) {
     let scale = generateScale(color.color, 10).reverse();
     for (let i in scale) {
@@ -56,7 +29,6 @@ function generatePalette(starterPalette) {
       });
     }
   }
-  console.log(newPalette);
   return newPalette;
 }
 
@@ -69,6 +41,6 @@ function generateScale(hexColor, numberOfColors) {
   return chroma.scale(getRange(hexColor)).mode("lab").colors(numberOfColors);
 }
 
-generatePalette(starterPalette);
+// generatePalette(starterPalette);
 // console.log(oldPalette)
-export default generatePalette;
+export {generatePalette};
