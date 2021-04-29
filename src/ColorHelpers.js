@@ -21,6 +21,7 @@ function generatePalette(starterPalette) {
         name: `${color.name} ${levels[i]}`,
         id: color.name.toLowerCase().replace(/ /g, "-"),
         hex: scale[i],
+        hexWithoutHash: scale[i].replace('#',''),
         rgb: chroma(scale[i]).css(),
         rgba: chroma(scale[i])
           .css()
