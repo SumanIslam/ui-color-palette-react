@@ -1,13 +1,10 @@
 // dependencies
 import React, { Component } from "react";
-// slider
-import Slider, { Range } from "rc-slider";
+import Slider, { Range } from "rc-slider"; // slider
 import "rc-slider/assets/index.css";
-// select
-import Select from "@material-ui/core/Select";
+import Select from "@material-ui/core/Select"; // select
 import MenuItem from "@material-ui/core/MenuItem";
-// snackbar
-import Snackbar from "@material-ui/core/Snackbar";
+import Snackbar from "@material-ui/core/Snackbar"; // snackbar
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 
