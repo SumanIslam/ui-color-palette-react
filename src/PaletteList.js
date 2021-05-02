@@ -1,6 +1,6 @@
 // dependencies
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import "react-router-dom";
 import { withStyles } from "@material-ui/core/styles"; // css in js
 
 // component
@@ -23,19 +23,23 @@ const styles = {
   nav: {
     display: "flex",
     justifyContent: "space-between",
-    color: 'white',
-    fontSize: '1rem'
+    color: "white",
+    fontSize: "1rem",
   },
   palettes: {
-    width: '100%',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3, 30%)',
-    gridGap: '5%'
+    width: "100%",
+    display: "grid",
+    gridTemplateColumns: "repeat(3, 30%)",
+    gridGap: "5%",
   },
 };
 class PaletteList extends Component {
+  goToPalette(id) {
+    this.props.history.push(`/palette/${id}`)
+  }
   render() {
     const { classes, palettes } = this.props;
+    console.log(this.props);
     return (
       <div className={classes.root}>
         <div className={classes.container}>
@@ -44,7 +48,11 @@ class PaletteList extends Component {
           </div>
           <div className={classes.palettes}>
             {palettes.map((palette) => (
-              <MiniPalette key={palette.id} {...palette} />
+              <MiniPalette
+                key={palette.id}
+                {...palette}
+                handleClick={() => this.goToPalette(palette.id)}
+              />
             ))}
           </div>
         </div>
