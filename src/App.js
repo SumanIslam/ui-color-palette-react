@@ -7,13 +7,20 @@ import { generatePalette } from "./ColorHelpers";
 // components
 import Palette from "./Palette";
 import PaletteList from "./PaletteList";
+import SingleColorPalette from "./SingleColorPalette";
 
 class App extends Component {
   findPalette = (id) => SeedColors.find((palette) => palette.id === id);
   render() {
     return (
       <Switch>
-        <Route exact path="/" render={(routeProps) => <PaletteList palettes={SeedColors} {...routeProps}/>} />
+        <Route
+          exact
+          path="/"
+          render={(routeProps) => (
+            <PaletteList palettes={SeedColors} {...routeProps} />
+          )}
+        />
         <Route
           exact
           path="/palette/:id"
@@ -25,6 +32,7 @@ class App extends Component {
             />
           )}
         />
+        <Route exact path="/palette/:paletteId/:colorId" render={() => <SingleColorPalette />}/>
       </Switch>
     );
   }

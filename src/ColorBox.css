@@ -37,7 +37,16 @@
   background: rgba(255,255,255,.3);
   padding: 0.2rem 0.8rem;
 }
-
+a .see-more {
+  color: black;
+}
+a .see-more:active,
+a .see-more:visited,
+a .see-more:link,
+a .see-more:hover
+ {
+  color: black;
+}
 .ColorBox:hover .copy-button {
   opacity: 1;
 }

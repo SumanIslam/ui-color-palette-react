@@ -1,7 +1,7 @@
 // dependencies
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Slider, { Range } from "rc-slider"; // slider
+import Slider from "rc-slider"; // slider
 import "rc-slider/assets/index.css";
 import Select from "@material-ui/core/Select"; // select
 import MenuItem from "@material-ui/core/MenuItem";

@@ -1,5 +1,6 @@
 // dependencies
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
 // styles
@@ -7,7 +8,7 @@ import "./ColorBox.css";
 
 class ColorBox extends Component {
   static defaultProps = {
-    copyMessage: [
+    message: [
       "copied!",
       "past me!",
       "got it!",
@@ -30,11 +31,9 @@ class ColorBox extends Component {
     );
   }
   render() {
-    const { background, name } = this.props;
+    const { background, name, colorId, paletteId } = this.props;
     const { copied } = this.state;
-    const copiedMessage = this.props.copyMessage[
-      Math.floor(Math.random() * 6)
-    ];
+    const copiedMessage = this.props.message[Math.floor(Math.random() * 6)];
     return (
       <CopyToClipboard text={background} onCopy={this.handleCopy}>
         <div className="ColorBox" style={{ background }}>
@@ -52,7 +51,12 @@ class ColorBox extends Component {
             </div>
             <button className="copy-button">Copy</button>
           </div>
-          <span className="see-more">More</span>
+          <Link
+            to={`/palette/${paletteId}/${colorId}`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <span className="see-more">More</span>
+          </Link>
         </div>
       </CopyToClipboard>
     );
