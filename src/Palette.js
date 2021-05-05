@@ -7,6 +7,7 @@ import "./Palette.css";
 // components
 import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
+import PaletteFooter from "./PaletteFooter";
 
 class Palette extends Component {
   constructor(props) {
@@ -27,7 +28,6 @@ class Palette extends Component {
   render() {
     const { level, format } = this.state;
     const { colors, paletteName, emoji, id } = this.props.palette;
-    console.log(this.props.palette);
     const colorBoxes = colors[level].map((color) => (
       <ColorBox
         key={color.name}
@@ -46,14 +46,12 @@ class Palette extends Component {
           level={level}
           changeLevel={this.changeLevel}
           handleChange={this.changeFormat}
+          showingSlider={true}
         />
         {/* color boxes goes here */}
         <div className="Palette-colors">{colorBoxes}</div>
         {/* footer goes here */}
-        <footer className="Palette-footer">
-          {paletteName}
-          <span className="emoji">{emoji}</span>
-        </footer>
+        <PaletteFooter paletteName={paletteName} emoji={emoji} />
       </div>
     );
   }
