@@ -35,6 +35,7 @@ class Palette extends Component {
         name={color.name}
         paletteId={id}
         colorId={color.id}
+        showMore={true}
       />
     ));
 

@@ -31,7 +31,7 @@ class ColorBox extends Component {
     );
   }
   render() {
-    const { background, name, colorId, paletteId } = this.props;
+    const { background, name, colorId, paletteId,showMore } = this.props;
     const { copied } = this.state;
     const copiedMessage = this.props.message[Math.floor(Math.random() * 6)];
     return (
@@ -55,7 +55,7 @@ class ColorBox extends Component {
             to={`/palette/${paletteId}/${colorId}`}
             onClick={(e) => e.stopPropagation()}
           >
-            <span className="see-more">More</span>
+            {showMore && <span className="see-more">More</span>}
           </Link>
         </div>
       </CopyToClipboard>
