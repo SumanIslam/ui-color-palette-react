@@ -1,4 +1,4 @@
-.ColorBox {
+/* .ColorBox {
   width: 20%;
   height: 25%;
   margin: 0 auto;
@@ -11,19 +11,32 @@
 
 .singleColorBox .ColorBox {
   height: 50%;
-}
-.ColorBox.go-back {
+} */
+/* .ColorBox.go-back {
   background: black;
-}
+} */
 
-.box-content {
+/* .box-content {
   position: absolute;
   left: 0.3rem;
   bottom: 0.3rem;
   font-size: 13px;
   letter-spacing: 1px;
+} */
+
+/* .ColorBox .light-text {
+  color: #fff;
 }
-.copy-button,
+.ColorBox .light-text:hover {
+  color: #fff;
+}
+.ColorBox .dark-text {
+  color: rgba(0, 0, 0, 0.8);
+}
+.ColorBox .dark-text:hover {
+  color: rgba(0, 0, 0, 0.8);
+} */
+/* .copy-button,
 .back-button {
   position: absolute;
   top: 50%;
@@ -31,55 +44,59 @@
   transform: translate(-50%, -50%);
   background: transparent;
   color: #fff;
-  border: 2px solid hsla(0,0%,100%,.2);
+  border: 2px solid #ffffff33;
   border-radius: 5px;
   padding: 0.4rem 1.8rem;
   font-size: 1.1rem;
   cursor: pointer;
   opacity: 0;
   transition: all .2s ease-out;
+} */
+/* .copy-button-dark {
+  color: #00000080;
+  border: 2px solid #00000080;
 }
 .back-button {
   opacity: 1;
   text-transform: capitalize;
   text-decoration: none;
-}
-.see-more {
+} */
+/* .see-more {
   position: absolute;
   bottom: 0;
   right: 0;
   background: rgba(255,255,255,.3);
   padding: 0.2rem 0.8rem;
-}
-a .see-more {
+} */
+/* a .see-more {
   color: black;
-}
-a .see-more:active,
+} */
+/* a .see-more:active,
 a .see-more:visited,
 a .see-more:link,
 a .see-more:hover
  {
   color: black;
-}
-.ColorBox:hover .copy-button {
+} */
+/* .ColorBox:hover .copy-button {
   opacity: 1;
-}
+} */
 
-.copy-overlay {
+/* .copy-overlay {
   height: 100%;
   width: 100%;
   opacity: 0;
   z-index: 0;
   transition: transform 0.5s ease-in-out;
-}
-.copy-overlay.show {
+} */
+/* .copy-overlay.show {
   position: absolute;
   opacity: 1;
   z-index: 10;
   transform: scale(50);
-}
+} */
 
-.copy-msg {
+/* .copy-msg {
   opacity: 0;
   z-index: 0;
   position: fixed;
@@ -94,15 +111,15 @@ a .see-more:hover
   font-size: 3.5rem;
   transform: scale(0.1);
   color: #fff;
-}
+} */
 
-.copy-msg.show {
+/* .copy-msg.show {
   opacity: 1;
   z-index: 10;
   transform: scale(1);
   transition: all 0.5s ease-in-out 0.3s;
-} 
-.copy-msg h1 {
+}  */
+/* .copy-msg h1 {
   font-weight: 400;
   display: block;
   width: 100%;
@@ -110,10 +127,12 @@ a .see-more:hover
   background: rgba(255,255,255,.3);
   padding: 1rem;
   text-transform: uppercase;
+} */
+h1 {
+  color: rgba(90, 88, 88, 0.3);
 }
-
-.copy-msg p {
+/* .copy-msg p {
   font-size: 1.5rem;
   font-weight: 600;
   margin-top: -3rem;
-}
+} */

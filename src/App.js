@@ -11,6 +11,7 @@ import SingleColorPalette from "./SingleColorPalette";
 
 class App extends Component {
   findPalette = (id) => SeedColors.find((palette) => palette.id === id);
+
   render() {
     return (
       <Switch>
