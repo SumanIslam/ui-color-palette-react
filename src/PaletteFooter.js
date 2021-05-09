@@ -2,20 +2,8 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 
-const styles = {
-  footer: {
-    height: "6vh",
-    background: "white",
-    display: "flex",
-    justifyContent: "flex-end",
-    alignItems: "center",
-    fontWeight: "bold",
-    marginRight: "0.5rem",
-  },
-  emoji: {
-    margin: "0 0.5rem",
-  },
-};
+// styles
+import styles from './styles/PaletteFooterStyles'
 
 function PaletteFooter(props) {
   const { paletteName, emoji, classes } = props;

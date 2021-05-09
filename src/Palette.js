@@ -7,16 +7,8 @@ import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter";
 
-const styles = {
-  palette: {
-    height: "100vh",
-    overflow: "hidden",
-  },
-  colors: {
-    height: "87vh",
-  },
-  
-};
+// styles
+import styles from './styles/PaletteStyles'
 
 class Palette extends Component {
   constructor(props) {
