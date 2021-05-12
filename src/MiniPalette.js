@@ -1,21 +1,17 @@
-import React from "react";
-import { withStyles } from "@material-ui/core/styles";
-
+import { withStyles } from '@material-ui/core/styles';
+import React from 'react';
 // styles
-import styles from './styles/MiniPaletteStyles'
+import styles from './styles/MiniPaletteStyles';
+
 
 function MiniPalette(props) {
-  const { classes, emoji, paletteName, colors } = props;
+  const { classes, emoji, paletteName, colors, handleClick } = props;
   const miniColorBoxes = colors.map((color) => (
-    <div
-      className={classes.miniColorBox}
-      style={{ background: color.color }}
-      key={color.name}
-    />
+    <div className={classes.miniColorBox} style={{ background: color.color }} key={color.name} />
   ));
   return (
     <div>
-      <div className={classes.root} onClick={props.handleClick}>
+      <div role="link" tabIndex={0} className={classes.root} onClick={handleClick}>
         <div className={classes.colors}>{miniColorBoxes}</div>
         <h1 className={classes.title}>
           {paletteName} <span className={classes.emoji}>{emoji}</span>

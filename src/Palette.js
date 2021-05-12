@@ -1,19 +1,17 @@
 // dependencies
-import React, { Component } from "react";
-import { withStyles } from "@material-ui/core/styles";
-
+import { withStyles } from '@material-ui/core/styles';
+import React, { Component } from 'react';
 // components
-import ColorBox from "./ColorBox";
-import Navbar from "./Navbar";
-import PaletteFooter from "./PaletteFooter";
-
+import ColorBox from './ColorBox';
+import Navbar from './Navbar';
+import PaletteFooter from './PaletteFooter';
 // styles
-import styles from './styles/PaletteStyles'
+import styles from './styles/PaletteStyles';
 
 class Palette extends Component {
   constructor(props) {
     super(props);
-    this.state = { level: 500, format: "hex" };
+    this.state = { level: 500, format: 'hex' };
     this.changeLevel = this.changeLevel.bind(this);
     this.changeFormat = this.changeFormat.bind(this);
   }
@@ -28,8 +26,8 @@ class Palette extends Component {
 
   render() {
     const { level, format } = this.state;
-    const { classes } = this.props;
-    const { colors, paletteName, emoji, id } = this.props.palette;
+    const { classes, palette } = this.props;
+    const { colors, paletteName, emoji, id } = palette;
     const colorBoxes = colors[level].map((color) => (
       <ColorBox
         key={color.name}
@@ -37,7 +35,7 @@ class Palette extends Component {
         name={color.name}
         paletteId={id}
         colorId={color.id}
-        showMore={true}
+        showMore
         rgbArray={color.rgbArray}
       />
     ));
@@ -49,7 +47,7 @@ class Palette extends Component {
           level={level}
           changeLevel={this.changeLevel}
           handleChange={this.changeFormat}
-          showingSlider={true}
+          showingSlider
         />
         {/* color boxes goes here */}
         <div className={classes.colors}>{colorBoxes}</div>

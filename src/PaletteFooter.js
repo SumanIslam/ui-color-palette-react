@@ -1,9 +1,8 @@
 // dependencies
-import React from "react";
-import { withStyles } from "@material-ui/core/styles";
-
+import { withStyles } from '@material-ui/core/styles';
+import React from 'react';
 // styles
-import styles from './styles/PaletteFooterStyles'
+import styles from './styles/PaletteFooterStyles';
 
 function PaletteFooter(props) {
   const { paletteName, emoji, classes } = props;

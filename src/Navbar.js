@@ -1,28 +1,28 @@
 // dependencies
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { withStyles } from "@material-ui/core/styles";
-import Slider from "rc-slider"; // slider
-import "rc-slider/assets/index.css";
-import Select from "@material-ui/core/Select"; // select
-import MenuItem from "@material-ui/core/MenuItem";
-import Snackbar from "@material-ui/core/Snackbar"; // snackbar
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
-
+import IconButton from '@material-ui/core/IconButton';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select'; // select
+import Snackbar from '@material-ui/core/Snackbar'; // snackbar
+import { withStyles } from '@material-ui/core/styles';
+import CloseIcon from '@material-ui/icons/Close';
+import Slider from 'rc-slider'; // slider
+import 'rc-slider/assets/index.css';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 // styles
-import styles from './styles/NavbarStyles'
+import styles from './styles/NavbarStyles';
 
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.state = { format: "hex", open: false };
+    this.state = { format: 'hex', open: false };
     this.handleFormatChange = this.handleFormatChange.bind(this);
     this.closeSnackbar = this.closeSnackbar.bind(this);
   }
 
   handleFormatChange(e) {
     this.setState({ format: e.target.value, open: true }, () =>
+      // eslint-disable-next-line react/destructuring-assignment
       this.props.handleChange(this.state.format)
     );
   }
@@ -30,6 +30,7 @@ class Navbar extends Component {
   closeSnackbar() {
     this.setState({ open: false });
   }
+
   render() {
     const { level, changeLevel, showingSlider, classes } = this.props;
     const { format, open } = this.state;
@@ -62,21 +63,17 @@ class Navbar extends Component {
           </Select>
         </div>
         <Snackbar
-          anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
           open={open}
           message={
-            format === "hexWithoutHash"
+            format === 'hexWithoutHash'
               ? `Color format has changed to HEX`
               : `Color format has changed to ${format.toUpperCase()}`
           }
           autoHideDuration={3000}
           onClose={this.closeSnackbar}
           action={
-            <IconButton
-              aria-label="close"
-              color="inherit"
-              onClick={this.closeSnackbar}
-            >
+            <IconButton aria-label="close" color="inherit" onClick={this.closeSnackbar}>
               <CloseIcon />
             </IconButton>
           }

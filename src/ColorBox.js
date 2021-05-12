@@ -1,24 +1,17 @@
 // dependencies
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import { withStyles } from "@material-ui/core/styles";
-
-
+import { withStyles } from '@material-ui/core/styles';
+import React, { Component } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { Link } from 'react-router-dom';
 // styles
-import styles from "./styles/ColorBoxStyles";
+import styles from './styles/ColorBoxStyles';
+
 
 class ColorBox extends Component {
   static defaultProps = {
-    message: [
-      "copied!",
-      "past me!",
-      "got it!",
-      "right one!",
-      "It'll rock!",
-      "panda style!",
-    ],
+    message: ['copied!', 'past me!', 'got it!', 'right one!', "It'll rock!", 'panda style!'],
   };
+
   constructor(props) {
     super(props);
     this.state = { copied: false };
@@ -32,38 +25,20 @@ class ColorBox extends Component {
       }, 1500)
     );
   }
+
   render() {
-    const {
-      background,
-      name,
-      colorId,
-      paletteId,
-      showMore,
-      classes,
-    } = this.props;
+    const { background, name, colorId, paletteId, showMore, classes } = this.props;
     const { copied } = this.state;
     const copiedMessage = this.props.message[Math.floor(Math.random() * 6)];
-
-    // let brightness =
-    //   rgbArray[0] * 0.299 + rgbArray[1] * 0.587 + rgbArray[2] * 0.114;
-
-    // // const isLightColor = brightness > 186;
-    // const isDarkColor = brightness <= 186;
 
     return (
       <CopyToClipboard text={background} onCopy={this.handleCopy}>
         <div className={classes.colorBox} style={{ background }}>
           <div
-            className={`${classes.copyOverlay} ${
-              copied && classes.showOverlay
-            }`}
+            className={`${classes.copyOverlay} ${copied && classes.showOverlay}`}
             style={{ background }}
           />
-          <div
-            className={`${classes.copyMessage} ${
-              copied && classes.showMessage
-            }`}
-          >
+          <div className={`${classes.copyMessage} ${copied && classes.showMessage}`}>
             <h1 className={classes.textColor}>{copiedMessage}</h1>
             <p className={classes.textColor}>{background}</p>
           </div>
@@ -71,13 +46,10 @@ class ColorBox extends Component {
             <div className={classes.boxContent}>
               <span className={classes.textColor}>{name}</span>
             </div>
-            <button className={classes.copyButton}>Copy</button>
+            <button type="button" className={classes.copyButton}>Copy</button>
           </div>
           {showMore && (
-            <Link
-              to={`/palette/${paletteId}/${colorId}`}
-              onClick={(e) => e.stopPropagation()}
-            >
+            <Link to={`/palette/${paletteId}/${colorId}`} onClick={(e) => e.stopPropagation()}>
               <span className={classes.seeMore}>More</span>
             </Link>
           )}

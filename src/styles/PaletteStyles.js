@@ -1,9 +1,9 @@
 export default {
   palette: {
-    height: "100vh",
-    overflow: "hidden",
+    height: '100vh',
+    overflow: 'hidden',
   },
   colors: {
-    height: "87vh",
+    height: '87vh',
   },
 };

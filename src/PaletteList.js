@@ -1,18 +1,18 @@
 // dependencies
-import React, { Component } from "react";
-import "react-router-dom";
-import { withStyles } from "@material-ui/core/styles"; // css in js
-
+import { withStyles } from '@material-ui/core/styles'; // css in js
+import React, { Component } from 'react';
+import 'react-router-dom';
 // component
-import MiniPalette from "./MiniPalette";
-
+import MiniPalette from './MiniPalette';
 // Styles
-import styles from './styles/PaletteListStyles'
+import styles from './styles/PaletteListStyles';
 
 class PaletteList extends Component {
   goToPalette(id) {
-    this.props.history.push(`/palette/${id}`)
+    // eslint-disable-next-line react/destructuring-assignment
+    this.props.history.push(`/palette/${id}`);
   }
+
   render() {
     const { classes, palettes } = this.props;
     return (
