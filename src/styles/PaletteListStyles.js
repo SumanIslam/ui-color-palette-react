@@ -15,8 +15,17 @@ export default {
   nav: {
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
     color: 'white',
+    width: '100%',
     fontSize: '1rem',
+    '& a': {
+      color: 'white',
+      textDecoration: 'none',
+      '&:hover': {
+        textDecoration: 'underline',
+      },
+    },
   },
   palettes: {
     width: '100%',

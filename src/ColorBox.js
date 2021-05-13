@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 // styles
 import styles from './styles/ColorBoxStyles';
 
-
 class ColorBox extends Component {
+  // eslint-disable-next-line react/static-property-placement
   static defaultProps = {
     message: ['copied!', 'past me!', 'got it!', 'right one!', "It'll rock!", 'panda style!'],
   };
@@ -27,9 +27,9 @@ class ColorBox extends Component {
   }
 
   render() {
-    const { background, name, colorId, paletteId, showMore, classes } = this.props;
+    const { background, name, colorId, paletteId, showMore, classes, message } = this.props;
     const { copied } = this.state;
-    const copiedMessage = this.props.message[Math.floor(Math.random() * 6)];
+    const copiedMessage = message[Math.floor(Math.random() * 6)];
 
     return (
       <CopyToClipboard text={background} onCopy={this.handleCopy}>
@@ -46,7 +46,9 @@ class ColorBox extends Component {
             <div className={classes.boxContent}>
               <span className={classes.textColor}>{name}</span>
             </div>
-            <button type="button" className={classes.copyButton}>Copy</button>
+            <button type="button" className={classes.copyButton}>
+              Copy
+            </button>
           </div>
           {showMore && (
             <Link to={`/palette/${paletteId}/${colorId}`} onClick={(e) => e.stopPropagation()}>

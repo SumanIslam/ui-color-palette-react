@@ -3,7 +3,6 @@ import React from 'react';
 // styles
 import styles from './styles/MiniPaletteStyles';
 
-
 function MiniPalette(props) {
   const { classes, emoji, paletteName, colors, handleClick } = props;
   const miniColorBoxes = colors.map((color) => (
