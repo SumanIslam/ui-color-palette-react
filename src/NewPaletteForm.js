@@ -13,6 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import classNames from 'classnames';
 import React, { Component } from 'react';
 import { ChromePicker } from 'react-color';
+import DraggableColorBox from './DraggableColorBox';
 
 // styles
 const drawerWidth = 280;
@@ -58,6 +59,7 @@ const styles = (theme) => ({
   },
   content: {
     flexGrow: 1,
+    height: 'calc(100vh - 64px)',
     padding: theme.spacing.unit * 3,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
@@ -77,12 +79,17 @@ const styles = (theme) => ({
 class NewPaletteForm extends Component {
   state = {
     open: false,
-    color: 'purple',
+    currentColor: 'purple',
+    colors: ['teal', 'purple'],
   };
 
-  handleColor = (color) => {
-    console.log(color);
-    this.setState({ color: color.hex });
+  handleColor = (newColor) => {
+    this.setState({ currentColor: newColor.hex });
+  };
+
+  addNewColor = () => {
+    const { currentColor, colors } = this.state;
+    this.setState({ colors: [...colors, currentColor] });
   };
 
   handleDrawerOpen = () => {
@@ -95,7 +102,7 @@ class NewPaletteForm extends Component {
 
   render() {
     const { classes } = this.props;
-    const { open, color } = this.state;
+    const { open, colors, currentColor } = this.state;
 
     return (
       <div className={classes.root}>
@@ -144,8 +151,13 @@ class NewPaletteForm extends Component {
             </Button>
           </div>
 
-          <ChromePicker color={color} onChangeComplete={this.handleColor} />
-          <Button variant="contained" color="primary" style={{ backgroundColor: `${color}` }}>
+          <ChromePicker color={currentColor} onChangeComplete={this.handleColor} />
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ backgroundColor: `${currentColor}` }}
+            onClick={this.addNewColor}
+          >
             Add Color
           </Button>
         </Drawer>
@@ -155,6 +167,9 @@ class NewPaletteForm extends Component {
           })}
         >
           <div className={classes.drawerHeader} />
+          {colors.map((color) => (
+            <DraggableColorBox color={color} />
+          ))}
         </main>
       </div>
     );
