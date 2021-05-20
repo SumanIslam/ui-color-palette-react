@@ -77,6 +77,12 @@ const styles = (theme) => ({
 class NewPaletteForm extends Component {
   state = {
     open: false,
+    color: 'purple',
+  };
+
+  handleColor = (color) => {
+    console.log(color);
+    this.setState({ color: color.hex });
   };
 
   handleDrawerOpen = () => {
@@ -89,7 +95,7 @@ class NewPaletteForm extends Component {
 
   render() {
     const { classes } = this.props;
-    const { open } = this.state;
+    const { open, color } = this.state;
 
     return (
       <div className={classes.root}>
@@ -138,8 +144,8 @@ class NewPaletteForm extends Component {
             </Button>
           </div>
 
-          <ChromePicker color="purple" onChangeComplete={(newColor) => console.log(newColor)} />
-          <Button variant="contained" color="primary">
+          <ChromePicker color={color} onChangeComplete={this.handleColor} />
+          <Button variant="contained" color="primary" style={{ backgroundColor: `${color}` }}>
             Add Color
           </Button>
         </Drawer>
