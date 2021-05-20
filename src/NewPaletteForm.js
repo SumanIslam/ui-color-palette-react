@@ -1,5 +1,6 @@
 // dependencies
 import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
@@ -11,11 +12,12 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import MenuIcon from '@material-ui/icons/Menu';
 import classNames from 'classnames';
 import React, { Component } from 'react';
+import { ChromePicker } from 'react-color';
 
 // styles
-const drawerWidth = 240;
+const drawerWidth = 280;
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     display: 'flex',
   },
@@ -86,7 +88,7 @@ class NewPaletteForm extends Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
     const { open } = this.state;
 
     return (
@@ -127,6 +129,19 @@ class NewPaletteForm extends Component {
             </IconButton>
           </div>
           <Divider />
+          <div>
+            <Button variant="contained" color="secondary">
+              Clear Palette
+            </Button>
+            <Button variant="contained" color="Primary">
+              Random Color
+            </Button>
+          </div>
+
+          <ChromePicker color="purple" onChangeComplete={(newColor) => console.log(newColor)} />
+          <Button variant="contained" color="primary">
+            Add Color
+          </Button>
         </Drawer>
         <main
           className={classNames(classes.content, {
