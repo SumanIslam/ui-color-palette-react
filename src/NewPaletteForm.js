@@ -23,31 +23,56 @@ class NewPaletteForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false,
-      currentColor: 'purple',
+      open: true,
+      currentColor: '#800080',
       newName: '',
       colors: [],
     };
   }
 
-  componentDidMount() {
-    ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
-      // eslint-disable-next-line react/destructuring-assignment
-      this.state.colors.every((color) => color.name.toLowerCase() !== value.toLowerCase());
-    });
-  }
+  // componentDidMount() {
+  //   // eslint-disable-next-line no-unused-vars
+  //   const { colors, currentColor } = this.state;
 
-  handleColor = (color) => {
+  //   ValidatorForm.addValidationRule('isColorNameUnique', (value) =>
+  //     colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase())
+  //   );
+
+  //   // eslint-disable-next-line no-unused-vars
+  //   // ValidatorForm.addValidationRule('isColorUnique', (value) =>
+  //   //   colors.every(({ color }) => color !== currentColor)
+  //   // );
+  // }
+
+  // submit pallete
+  submitPallete = () => {
+    const { savePallete, history } = this.props;
+    const { colors } = this.state;
+    const newName = 'New Test Pallete';
+    const newPallete = {
+      palleteName: newName,
+      colors,
+      id: newName.toLowerCase().replace(/ /g, '-'),
+    };
+    savePallete(newPallete);
+    history.push('/');
+  };
+
+  // set current color from chromePicker
+  handleCurrentColor = (color) => {
     const newColor = `#${rgbHex(color.rgb.r, color.rgb.g, color.rgb.b, color.rgb.a)}`;
     this.setState({ currentColor: newColor });
   };
 
-  addNewColor = () => {
+  // set new color when validator form is submitted
+  addNewColor = (event) => {
+    event.preventDefault();
     const { currentColor, colors, newName } = this.state;
     const newColor = { color: currentColor, name: newName };
-    this.setState({ colors: [...colors, newColor] });
+    this.setState({ colors: [...colors, newColor], newName: '' });
   };
 
+  // set current name of color
   handleChange = (evt) => {
     this.setState({ newName: evt.target.value });
   };
@@ -69,8 +94,10 @@ class NewPaletteForm extends Component {
     return (
       <div className={classes.root}>
         <CssBaseline />
+        {/* app bar goes here */}
         <AppBar
           position="fixed"
+          color="default"
           className={classNames(classes.appBar, {
             [classes.appBarShift]: open,
           })}
@@ -84,9 +111,22 @@ class NewPaletteForm extends Component {
             >
               <MenuIcon />
             </IconButton>
+            {/* app bar title and buttons goes here */}
             <Typography variant="h6" color="inherit" noWrap>
               Create A Palette
             </Typography>
+
+            <Button
+              className={classes.buttonFontSize}
+              variant="contained"
+              color="primary"
+              onClick={this.submitPallete}
+            >
+              Save Pallete
+            </Button>
+            <Button className={classes.buttonFontSize} variant="contained" color="secondary">
+              Clear Palette
+            </Button>
           </Toolbar>
         </AppBar>
         {/* app drawer start here */}
@@ -112,7 +152,7 @@ class NewPaletteForm extends Component {
               <Button className={classes.buttonFontSize} variant="contained" color="secondary">
                 Clear Palette
               </Button>
-              <Button className={classes.buttonFontSize} variant="contained" color="Primary">
+              <Button className={classes.buttonFontSize} variant="contained" color="primary">
                 Random Color
               </Button>
             </div>
@@ -122,30 +162,37 @@ class NewPaletteForm extends Component {
           <ChromePicker
             className={classes.chromePicker}
             color={currentColor}
-            onChangeComplete={this.handleColor}
+            onChangeComplete={this.handleCurrentColor}
             direction="vertical"
           />
 
           {/* color validator goes here */}
-          <ValidatorForm onSubmit={this.addNewColor} onError={this.handleError}>
+          <ValidatorForm
+            onSubmit={this.addNewColor}
+            ref="form"
+            onError={(error) => console.log(error)}
+          >
             <TextValidator
               className={classes.textValidator}
               value={newName}
               onChange={this.handleChange}
-              validators={['required', 'isColorNameUnique']}
-              errorMessages={['this field is required', 'Color name must be Unique']}
+              variant="filled"
+              placeholder="Add a color"
+              validators={['required']}
+              errorMessages={['this field is required']}
             />
             <Button
               className={classes.buttonCenter}
+              type="submit"
               variant="contained"
               color="primary"
               style={{ backgroundColor: `${currentColor}` }}
-              onClick={this.addNewColor}
             >
               Add Color
             </Button>
           </ValidatorForm>
         </Drawer>
+        {/* Draggable color box goes here */}
         <main
           className={classNames(classes.content, {
             [classes.contentShift]: open,

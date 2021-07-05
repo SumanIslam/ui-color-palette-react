@@ -3,6 +3,7 @@ export default {
     backgroundColor: 'purple',
     height: '100vh',
     display: 'flex',
+    overflowY: 'scroll',
     alignItems: 'flex-start',
     justifyContent: 'center',
   },

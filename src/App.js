@@ -1,26 +1,42 @@
 // dependencies
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-
-// components
-import SeedColors from './SeedColors';
 import { generatePalette } from './ColorHelpers';
+import NewPaletteForm from './NewPaletteForm';
 import Palette from './Palette';
 import PaletteList from './PaletteList';
+// components
+import SeedColors from './SeedColors';
 import SingleColorPalette from './SingleColorPalette';
-import NewPaletteForm from './NewPaletteForm';
 
 class App extends Component {
-  findPalette = (id) => SeedColors.find((palette) => palette.id === id);
+  state = {
+    palettes: SeedColors,
+  };
+
+  findPalette = (id) => {
+    const { palettes } = this.state;
+    return palettes.find((palette) => palette.id === id);
+  };
+
+  savePallete = (newPalette) => {
+    console.log(newPalette);
+    this.setState((state) => ({ palettes: [...state.palettes, newPalette] }));
+  };
 
   render() {
+    const { palettes } = this.state;
     return (
       <Switch>
-        <Route exact path="/palette/new" render={() => <NewPaletteForm />} />
+        <Route
+          exact
+          path="/palette/new"
+          render={(routeProps) => <NewPaletteForm savePallete={this.savePallete} {...routeProps} />}
+        />
         <Route
           exact
           path="/"
-          render={(routeProps) => <PaletteList palettes={SeedColors} {...routeProps} />}
+          render={(routeProps) => <PaletteList palettes={palettes} {...routeProps} />}
         />
         <Route
           exact

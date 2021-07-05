@@ -43,6 +43,7 @@
 			}
 		],
 		"import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+		"react/no-string-refs": "off",
 		"react/jsx-props-no-spreading": "off",
 		"no-restricted-syntax": "off"
 	},
