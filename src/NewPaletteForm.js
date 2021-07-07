@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 // dependencies
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -25,34 +26,32 @@ class NewPaletteForm extends Component {
     this.state = {
       open: true,
       currentColor: '#800080',
-      newName: '',
+      newColorName: '',
       colors: [],
     };
   }
 
-  // componentDidMount() {
-  //   // eslint-disable-next-line no-unused-vars
-  //   const { colors, currentColor } = this.state;
+  componentDidMount() {
+    ValidatorForm.addValidationRule('isColorNameUnique', (value) =>
+      // eslint-disable-next-line react/destructuring-assignment
+      this.state.colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase())
+    );
 
-  //   ValidatorForm.addValidationRule('isColorNameUnique', (value) =>
-  //     colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase())
-  //   );
-
-  //   // eslint-disable-next-line no-unused-vars
-  //   // ValidatorForm.addValidationRule('isColorUnique', (value) =>
-  //   //   colors.every(({ color }) => color !== currentColor)
-  //   // );
-  // }
+    ValidatorForm.addValidationRule('isColorUnique', () =>
+      // eslint-disable-next-line react/destructuring-assignment
+      this.state.colors.every(({ color }) => color !== this.state.currentColor)
+    );
+  }
 
   // submit pallete
   submitPallete = () => {
     const { savePallete, history } = this.props;
     const { colors } = this.state;
-    const newName = 'New Test Pallete';
+    const newPalleteName = 'New Test Pallete';
     const newPallete = {
-      palleteName: newName,
+      palleteName: newPalleteName,
       colors,
-      id: newName.toLowerCase().replace(/ /g, '-'),
+      id: newPalleteName.toLowerCase().replace(/ /g, '-'),
     };
     savePallete(newPallete);
     history.push('/');
@@ -67,14 +66,14 @@ class NewPaletteForm extends Component {
   // set new color when validator form is submitted
   addNewColor = (event) => {
     event.preventDefault();
-    const { currentColor, colors, newName } = this.state;
-    const newColor = { color: currentColor, name: newName };
-    this.setState({ colors: [...colors, newColor], newName: '' });
+    const { currentColor, colors, newColorName } = this.state;
+    const newColor = { color: currentColor, name: newColorName };
+    this.setState({ colors: [...colors, newColor], newColorName: '' });
   };
 
   // set current name of color
   handleChange = (evt) => {
-    this.setState({ newName: evt.target.value });
+    this.setState({ newColorName: evt.target.value });
   };
 
   handleError = (err) => console.log(err);
@@ -89,7 +88,8 @@ class NewPaletteForm extends Component {
 
   render() {
     const { classes } = this.props;
-    const { open, colors, currentColor, newName } = this.state;
+    // eslint-disable-next-line no-unused-vars
+    const { open, colors, currentColor, newColorName } = this.state;
 
     return (
       <div className={classes.root}>
@@ -116,17 +116,25 @@ class NewPaletteForm extends Component {
               Create A Palette
             </Typography>
 
-            <Button
-              className={classes.buttonFontSize}
-              variant="contained"
-              color="primary"
-              onClick={this.submitPallete}
-            >
-              Save Pallete
-            </Button>
-            <Button className={classes.buttonFontSize} variant="contained" color="secondary">
-              Clear Palette
-            </Button>
+            <div className={classes.toolbarButton}>
+              <Button
+                className={classes.buttonFontSize}
+                style={{ marginRight: '0.5rem' }}
+                variant="contained"
+                color="secondary"
+              >
+                Go Back
+              </Button>
+
+              <Button
+                className={classes.buttonFontSize}
+                variant="contained"
+                color="primary"
+                onClick={this.submitPallete}
+              >
+                Save Palette
+              </Button>
+            </div>
           </Toolbar>
         </AppBar>
         {/* app drawer start here */}
@@ -167,19 +175,19 @@ class NewPaletteForm extends Component {
           />
 
           {/* color validator goes here */}
-          <ValidatorForm
-            onSubmit={this.addNewColor}
-            ref="form"
-            onError={(error) => console.log(error)}
-          >
+          <ValidatorForm onSubmit={this.addNewColor}>
             <TextValidator
               className={classes.textValidator}
-              value={newName}
-              onChange={this.handleChange}
               variant="filled"
               placeholder="Add a color"
-              validators={['required']}
-              errorMessages={['this field is required']}
+              value={newColorName}
+              validators={['required', 'isColorNameUnique', 'isColorUnique']}
+              errorMessages={[
+                'this field is required',
+                'color name must be unique',
+                'color must be unique',
+              ]}
+              onChange={this.handleChange}
             />
             <Button
               className={classes.buttonCenter}

@@ -85,6 +85,11 @@ const styles = (theme) => ({
     display: 'block',
     margin: '0 auto',
   },
+  toolbarButton: {
+    marginLeft: 'auto',
+    display: 'flex',
+    justifyContent: 'space-evenly',
+  },
 });
 
 export default styles;
