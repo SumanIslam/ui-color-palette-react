@@ -84,6 +84,14 @@ class NewPaletteForm extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  // remove draggable color
+  removeColor = (colorName) => {
+    const { colors } = this.state;
+    this.setState({
+      colors: colors.filter((color) => color.name !== colorName),
+    });
+  };
+
   handleError = (err) => console.log(err);
 
   handleDrawerOpen = () => {
@@ -228,7 +236,12 @@ class NewPaletteForm extends Component {
         >
           <div className={classes.drawerHeader} />
           {colors.map((color) => (
-            <DraggableColorBox key={uuidv4()} color={color.color} name={color.name} />
+            <DraggableColorBox
+              key={uuidv4()}
+              color={color.color}
+              name={color.name}
+              removeColor={this.removeColor}
+            />
           ))}
         </main>
       </div>
