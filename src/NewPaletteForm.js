@@ -18,7 +18,7 @@ import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
 import rgbHex from 'rgb-hex';
 import { v4 as uuidv4 } from 'uuid';
 import DraggableColorBox from './DraggableColorBox';
-import styles from './styles/NewPalleteForm';
+import styles from './styles/NewPaletteForm';
 
 class NewPaletteForm extends Component {
   constructor(props) {
@@ -28,6 +28,7 @@ class NewPaletteForm extends Component {
       currentColor: '#800080',
       newColorName: '',
       colors: [],
+      newPaletteName: '',
     };
   }
 
@@ -41,19 +42,26 @@ class NewPaletteForm extends Component {
       // eslint-disable-next-line react/destructuring-assignment
       this.state.colors.every(({ color }) => color !== this.state.currentColor)
     );
+
+    ValidatorForm.addValidationRule('isPaletteNameUnique', (value) =>
+      // eslint-disable-next-line react/destructuring-assignment
+      this.props.palettes.every(
+        ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
+      )
+    );
   }
 
   // submit pallete
   submitPallete = () => {
-    const { savePallete, history } = this.props;
-    const { colors } = this.state;
-    const newPalleteName = 'New Test Pallete';
+    const { savePalette, history } = this.props;
+    const { colors, newPaletteName } = this.state;
+    const paletteName = newPaletteName;
     const newPallete = {
-      palleteName: newPalleteName,
+      paletteName,
       colors,
-      id: newPalleteName.toLowerCase().replace(/ /g, '-'),
+      id: paletteName.toLowerCase().replace(/ /g, '-'),
     };
-    savePallete(newPallete);
+    savePalette(newPallete);
     history.push('/');
   };
 
@@ -72,8 +80,8 @@ class NewPaletteForm extends Component {
   };
 
   // set current name of color
-  handleChange = (evt) => {
-    this.setState({ newColorName: evt.target.value });
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   handleError = (err) => console.log(err);
@@ -89,7 +97,7 @@ class NewPaletteForm extends Component {
   render() {
     const { classes } = this.props;
     // eslint-disable-next-line no-unused-vars
-    const { open, colors, currentColor, newColorName } = this.state;
+    const { open, colors, currentColor, newColorName, newPaletteName } = this.state;
 
     return (
       <div className={classes.root}>
@@ -126,14 +134,25 @@ class NewPaletteForm extends Component {
                 Go Back
               </Button>
 
-              <Button
-                className={classes.buttonFontSize}
-                variant="contained"
-                color="primary"
-                onClick={this.submitPallete}
-              >
-                Save Palette
-              </Button>
+              <ValidatorForm onSubmit={this.submitPallete}>
+                <TextValidator
+                  placeholder="Palette name"
+                  className={classes.textValidator}
+                  value={newPaletteName}
+                  name="newPaletteName"
+                  onChange={this.handleChange}
+                  validators={['required', 'isPaletteNameUnique']}
+                  errorMessages={['this field is required', 'palette name must be unique']}
+                />
+                <Button
+                  className={classes.buttonFontSize}
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                >
+                  Save Palette
+                </Button>
+              </ValidatorForm>
             </div>
           </Toolbar>
         </AppBar>
@@ -180,6 +199,7 @@ class NewPaletteForm extends Component {
               className={classes.textValidator}
               variant="filled"
               placeholder="Add a color"
+              name="newColorName"
               value={newColorName}
               validators={['required', 'isColorNameUnique', 'isColorUnique']}
               errorMessages={[

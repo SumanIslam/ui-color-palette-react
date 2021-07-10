@@ -19,8 +19,7 @@ class App extends Component {
     return palettes.find((palette) => palette.id === id);
   };
 
-  savePallete = (newPalette) => {
-    console.log(newPalette);
+  savePalette = (newPalette) => {
     this.setState((state) => ({ palettes: [...state.palettes, newPalette] }));
   };
 
@@ -31,7 +30,9 @@ class App extends Component {
         <Route
           exact
           path="/palette/new"
-          render={(routeProps) => <NewPaletteForm savePallete={this.savePallete} {...routeProps} />}
+          render={(routeProps) => (
+            <NewPaletteForm savePalette={this.savePalette} palettes={palettes} {...routeProps} />
+          )}
         />
         <Route
           exact
