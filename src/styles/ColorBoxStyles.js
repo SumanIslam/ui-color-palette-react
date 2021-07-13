@@ -35,8 +35,6 @@ export default {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     background: 'transparent',
-    // color: "#fff",
-    // border: "2px solid #ffffff33",
     color: (props) =>
       props.rgbArray[0] * 0.299 + props.rgbArray[1] * 0.587 + props.rgbArray[2] * 0.114 > 186
         ? '#000000cc'

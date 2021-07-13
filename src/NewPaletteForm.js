@@ -15,9 +15,9 @@ import classNames from 'classnames';
 import React, { Component } from 'react';
 import { ChromePicker } from 'react-color';
 import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
+import { arrayMove } from 'react-sortable-hoc';
 import rgbHex from 'rgb-hex';
-import { v4 as uuidv4 } from 'uuid';
-import DraggableColorBox from './DraggableColorBox';
+import DraggableColorList from './DraggableColorList';
 import styles from './styles/NewPaletteForm';
 
 class NewPaletteForm extends Component {
@@ -92,6 +92,13 @@ class NewPaletteForm extends Component {
     });
   };
 
+  // onSortEnd
+  onSortEnd = ({ oldIndex, newIndex }) => {
+    this.setState(({ colors }) => ({
+      colors: arrayMove(colors, oldIndex, newIndex),
+    }));
+  };
+
   handleError = (err) => console.log(err);
 
   handleDrawerOpen = () => {
@@ -132,15 +139,16 @@ class NewPaletteForm extends Component {
               Create A Palette
             </Typography>
 
-            <div className={classes.toolbarButton}>
-              <Button
+            {/* className={classes.toolbarButton} */}
+            <div>
+              {/* <Button
                 className={classes.buttonFontSize}
                 style={{ marginRight: '0.5rem' }}
                 variant="contained"
                 color="secondary"
               >
                 Go Back
-              </Button>
+              </Button> */}
 
               <ValidatorForm onSubmit={this.submitPallete}>
                 <TextValidator
@@ -235,14 +243,12 @@ class NewPaletteForm extends Component {
           })}
         >
           <div className={classes.drawerHeader} />
-          {colors.map((color) => (
-            <DraggableColorBox
-              key={uuidv4()}
-              color={color.color}
-              name={color.name}
-              removeColor={this.removeColor}
-            />
-          ))}
+          <DraggableColorList
+            colors={colors}
+            removeColor={this.removeColor}
+            axis="xy"
+            onSortEnd={this.onSortEnd}
+          />
         </main>
       </div>
     );
