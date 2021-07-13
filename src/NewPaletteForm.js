@@ -1,4 +1,3 @@
-/* eslint-disable arrow-body-style */
 // dependencies
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -11,11 +10,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import MenuIcon from '@material-ui/icons/Menu';
+import arrayMove from 'array-move';
 import classNames from 'classnames';
 import React, { Component } from 'react';
 import { ChromePicker } from 'react-color';
 import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
-import { arrayMove } from 'react-sortable-hoc';
 import rgbHex from 'rgb-hex';
 import DraggableColorList from './DraggableColorList';
 import styles from './styles/NewPaletteForm';
@@ -23,11 +22,12 @@ import styles from './styles/NewPaletteForm';
 class NewPaletteForm extends Component {
   constructor(props) {
     super(props);
+    const { palettes } = this.props;
     this.state = {
       open: true,
       currentColor: '#800080',
       newColorName: '',
-      colors: [],
+      colors: palettes[0].colors,
       newPaletteName: '',
     };
   }
@@ -92,6 +92,22 @@ class NewPaletteForm extends Component {
     });
   };
 
+  // clear palette
+  clearPalette = () => {
+    this.setState({ colors: [] });
+  };
+
+  // get random color
+  getRandomColor = () => {
+    const { palettes } = this.props;
+    const { colors } = this.state;
+    const allColors = palettes.map((palette) => palette.colors).flat();
+    const randomColor = allColors[Math.floor(Math.random() * allColors.length)];
+    this.setState({
+      colors: [...colors, randomColor],
+    });
+  };
+
   // onSortEnd
   onSortEnd = ({ oldIndex, newIndex }) => {
     this.setState(({ colors }) => ({
@@ -110,9 +126,9 @@ class NewPaletteForm extends Component {
   };
 
   render() {
-    const { classes } = this.props;
-    // eslint-disable-next-line no-unused-vars
+    const { classes, maxColors } = this.props;
     const { open, colors, currentColor, newColorName, newPaletteName } = this.state;
+    const isPaletteFull = colors.length >= maxColors;
 
     return (
       <div className={classes.root}>
@@ -192,10 +208,21 @@ class NewPaletteForm extends Component {
           <div>
             <h2 className={classes.textAlignCenter}>Design Your Palette</h2>
             <div className={classes.buttonContainer}>
-              <Button className={classes.buttonFontSize} variant="contained" color="secondary">
+              <Button
+                className={classes.buttonFontSize}
+                variant="contained"
+                color="secondary"
+                onClick={this.clearPalette}
+              >
                 Clear Palette
               </Button>
-              <Button className={classes.buttonFontSize} variant="contained" color="primary">
+              <Button
+                className={classes.buttonFontSize}
+                variant="contained"
+                color="primary"
+                onClick={this.getRandomColor}
+                disabled={isPaletteFull}
+              >
                 Random Color
               </Button>
             </div>
@@ -230,9 +257,10 @@ class NewPaletteForm extends Component {
               type="submit"
               variant="contained"
               color="primary"
-              style={{ backgroundColor: `${currentColor}` }}
+              style={{ backgroundColor: isPaletteFull ? 'gray' : `${currentColor}` }}
+              disabled={isPaletteFull}
             >
-              Add Color
+              {isPaletteFull ? 'Palette Full' : 'Add Color'}
             </Button>
           </ValidatorForm>
         </Drawer>
@@ -248,6 +276,7 @@ class NewPaletteForm extends Component {
             removeColor={this.removeColor}
             axis="xy"
             onSortEnd={this.onSortEnd}
+            distance={1}
           />
         </main>
       </div>
@@ -256,3 +285,7 @@ class NewPaletteForm extends Component {
 }
 
 export default withStyles(styles, { withTheme: true })(NewPaletteForm);
+
+NewPaletteForm.defaultProps = {
+  maxColors: 20,
+};
