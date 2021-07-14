@@ -11,7 +11,7 @@ import React, { Component } from 'react';
 import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
 import { Link } from 'react-router-dom';
 
-class paletteFormNav extends Component {
+class PaletteFormNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -74,6 +74,7 @@ class paletteFormNav extends Component {
 
               <ValidatorForm onSubmit={() => submitPallete(newPaletteName)}>
                 <TextValidator
+                  autoComplete="off"
                   placeholder="Palette name"
                   className={classes.textValidator}
                   value={newPaletteName}
@@ -99,4 +100,4 @@ class paletteFormNav extends Component {
   }
 }
 
-export default paletteFormNav;
+export default PaletteFormNav;

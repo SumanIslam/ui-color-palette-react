@@ -8,12 +8,10 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import arrayMove from 'array-move';
 import classNames from 'classnames';
 import React, { Component } from 'react';
-import { ChromePicker } from 'react-color';
-import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
-import rgbHex from 'rgb-hex';
+import ColorPickerForm from './ColorPickerForm';
 import DraggableColorList from './DraggableColorList';
+import PaletteFormNav from './PaletteFormNav';
 import styles from './styles/NewPaletteForm';
-import PaletteFormNav from './paletteFormNav';
 
 class NewPaletteForm extends Component {
   constructor(props) {
@@ -21,22 +19,8 @@ class NewPaletteForm extends Component {
     const { palettes } = this.props;
     this.state = {
       open: true,
-      currentColor: '#800080',
-      newColorName: '',
       colors: palettes[0].colors,
     };
-  }
-
-  componentDidMount() {
-    ValidatorForm.addValidationRule('isColorNameUnique', (value) =>
-      // eslint-disable-next-line react/destructuring-assignment
-      this.state.colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase())
-    );
-
-    ValidatorForm.addValidationRule('isColorUnique', () =>
-      // eslint-disable-next-line react/destructuring-assignment
-      this.state.colors.every(({ color }) => color !== this.state.currentColor)
-    );
   }
 
   // submit pallete
@@ -53,23 +37,10 @@ class NewPaletteForm extends Component {
     history.push('/');
   };
 
-  // set current color from chromePicker
-  handleCurrentColor = (color) => {
-    const newColor = `#${rgbHex(color.rgb.r, color.rgb.g, color.rgb.b, color.rgb.a)}`;
-    this.setState({ currentColor: newColor });
-  };
-
   // set new color when validator form is submitted
-  addNewColor = (event) => {
-    event.preventDefault();
-    const { currentColor, colors, newColorName } = this.state;
-    const newColor = { color: currentColor, name: newColorName };
-    this.setState({ colors: [...colors, newColor], newColorName: '' });
-  };
-
-  // set current name of color
-  handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+  addNewColor = (newColor) => {
+    const { colors } = this.state;
+    this.setState({ colors: [...colors, newColor] });
   };
 
   // remove draggable color
@@ -115,11 +86,12 @@ class NewPaletteForm extends Component {
 
   render() {
     const { classes, maxColors, palettes } = this.props;
-    const { open, colors, currentColor, newColorName } = this.state;
+    const { open, colors } = this.state;
     const isPaletteFull = colors.length >= maxColors;
 
     return (
       <div className={classes.root}>
+        {/* Navbar goes here */}
         <PaletteFormNav
           open={open}
           classes={classes}
@@ -168,40 +140,12 @@ class NewPaletteForm extends Component {
           </div>
 
           {/* Drawer color picker goes here */}
-          <ChromePicker
-            className={classes.chromePicker}
-            color={currentColor}
-            onChangeComplete={this.handleCurrentColor}
-            direction="vertical"
+          <ColorPickerForm
+            classes={classes}
+            colors={colors}
+            isPaletteFull={isPaletteFull}
+            addNewColor={this.addNewColor}
           />
-
-          {/* color validator goes here */}
-          <ValidatorForm onSubmit={this.addNewColor}>
-            <TextValidator
-              className={classes.textValidator}
-              variant="filled"
-              placeholder="Add a color"
-              name="newColorName"
-              value={newColorName}
-              validators={['required', 'isColorNameUnique', 'isColorUnique']}
-              errorMessages={[
-                'this field is required',
-                'color name must be unique',
-                'color must be unique',
-              ]}
-              onChange={this.handleChange}
-            />
-            <Button
-              className={classes.buttonCenter}
-              type="submit"
-              variant="contained"
-              color="primary"
-              style={{ backgroundColor: isPaletteFull ? 'gray' : `${currentColor}` }}
-              disabled={isPaletteFull}
-            >
-              {isPaletteFull ? 'Palette Full' : 'Add Color'}
-            </Button>
-          </ValidatorForm>
         </Drawer>
         {/* Draggable color box goes here */}
         <main
