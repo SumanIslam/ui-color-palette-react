@@ -90,6 +90,9 @@ const styles = (theme) => ({
     marginLeft: 'auto',
     display: 'flex',
     justifyContent: 'space-evenly',
+    '& a': {
+      textDecoration: 'none',
+    },
   },
 });
 

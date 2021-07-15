@@ -39,12 +39,7 @@ const PaletteFormNav = (props) => {
 
           <div className={classes.toolbarButton}>
             <Link to="/">
-              <Button
-                className={classes.buttonFontSize}
-                style={{ marginRight: '0.5rem' }}
-                variant="contained"
-                color="secondary"
-              >
+              <Button style={{ marginRight: '0.5rem' }} variant="contained" color="secondary">
                 Go Back
               </Button>
             </Link>
