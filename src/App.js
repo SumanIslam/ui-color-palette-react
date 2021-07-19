@@ -5,13 +5,14 @@ import { generatePalette } from './ColorHelpers';
 import NewPaletteForm from './NewPaletteForm';
 import Palette from './Palette';
 import PaletteList from './PaletteList';
-// components
 import SeedColors from './SeedColors';
 import SingleColorPalette from './SingleColorPalette';
 
 class App extends Component {
+  getPalettes = JSON.parse(localStorage.getItem('palettes'));
+
   state = {
-    palettes: SeedColors,
+    palettes: this.getPalettes || SeedColors,
   };
 
   findPalette = (id) => {
@@ -20,7 +21,13 @@ class App extends Component {
   };
 
   savePalette = (newPalette) => {
-    this.setState((state) => ({ palettes: [...state.palettes, newPalette] }));
+    this.setState(
+      (state) => ({ palettes: [...state.palettes, newPalette] }),
+      () => {
+        const { palettes } = this.state;
+        localStorage.setItem('palettes', JSON.stringify(palettes));
+      }
+    );
   };
 
   render() {
