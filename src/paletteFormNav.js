@@ -27,7 +27,7 @@ const PaletteFormNav = (props) => {
           <IconButton
             color="inherit"
             aria-label="Open drawer"
-            onClick={() => handleDrawerOpen}
+            onClick={handleDrawerOpen}
             className={classNames(classes.menuButton, open && classes.hide)}
           >
             <MenuIcon />
