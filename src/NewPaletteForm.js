@@ -24,13 +24,14 @@ class NewPaletteForm extends Component {
   }
 
   // submit pallete
-  submitPallete = (newPaletteName) => {
+  submitPallete = (newPalette) => {
     const { savePalette, history } = this.props;
     const { colors } = this.state;
-    const paletteName = newPaletteName;
+    const { paletteName, emoji } = newPalette;
     const newPallete = {
       paletteName,
       colors,
+      emoji,
       id: paletteName.toLowerCase().replace(/ /g, '-'),
     };
     savePalette(newPallete);
