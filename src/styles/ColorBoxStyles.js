@@ -1,3 +1,5 @@
+import sizes from '../sizes';
+
 export default {
   colorBox: {
     width: '20%',
@@ -10,6 +12,22 @@ export default {
     marginBottom: '-4px',
     '&:hover button': {
       opacity: 1,
+    },
+    [sizes.down('lg')]: {
+      width: '25%',
+      height: (props) => (props.showMore ? '20%' : '50%'),
+    },
+    [sizes.down('md')]: {
+      width: '33.33%',
+      height: (props) => (props.showMore ? '14.28%' : '50%'),
+    },
+    [sizes.down('sm')]: {
+      width: '50%',
+      height: (props) => (props.showMore ? '10%' : '50%'),
+    },
+    [sizes.down('xs')]: {
+      width: '100%',
+      height: (props) => (props.showMore ? '5%' : '10%'),
     },
   },
   textColor: {
