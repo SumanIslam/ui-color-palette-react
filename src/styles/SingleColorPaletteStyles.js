@@ -1,3 +1,5 @@
+import sizes from '../sizes';
+
 export default {
   palette: {
     height: '100vh',
@@ -5,6 +7,32 @@ export default {
   },
   colors: {
     height: '87vh',
+  },
+  goBack: {
+    background: 'black',
+    width: '20%',
+    height: '50%',
+    margin: '0 auto',
+    display: 'inline-block',
+    position: 'relative',
+    cursor: 'pointer',
+    marginBottom: '-4px',
+    [sizes.down('lg')]: {
+      width: '25%',
+      height: '33.33%',
+    },
+    [sizes.down('md')]: {
+      width: '33.33%',
+      height: '25%',
+    },
+    [sizes.down('sm')]: {
+      width: '50%',
+      height: '20%',
+    },
+    [sizes.down('xs')]: {
+      width: '100%',
+      height: '10%',
+    },
   },
   backButton: {
     position: 'absolute',
@@ -19,15 +47,5 @@ export default {
     cursor: 'pointer',
     textTransform: 'capitalize',
     textDecoration: 'none',
-  },
-  goBack: {
-    background: 'black',
-    width: '20%',
-    height: '50%',
-    margin: '0 auto',
-    display: 'inline-block',
-    position: 'relative',
-    cursor: 'pointer',
-    marginBottom: '-4px',
   },
 };

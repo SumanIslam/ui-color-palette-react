@@ -1,12 +1,9 @@
-// dependencies
 import { withStyles } from '@material-ui/core/styles';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// component
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import PaletteFooter from './PaletteFooter';
-// styles
 import styles from './styles/SingleColorPaletteStyles';
 
 class SingleColorPalette extends Component {

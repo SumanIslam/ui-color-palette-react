@@ -1,9 +1,7 @@
-// dependencies
 import { withStyles } from '@material-ui/core/styles';
 import React, { Component } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Link } from 'react-router-dom';
-// styles
 import styles from './styles/ColorBoxStyles';
 
 class ColorBox extends Component {
@@ -42,7 +40,7 @@ class ColorBox extends Component {
             <h1 className={classes.textColor}>{copiedMessage}</h1>
             <p className={classes.textColor}>{background}</p>
           </div>
-          <div className="copy-container">
+          <div>
             <div className={classes.boxContent}>
               <span className={classes.textColor}>{name}</span>
             </div>

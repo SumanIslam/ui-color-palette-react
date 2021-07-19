@@ -15,15 +15,15 @@ export default {
     },
     [sizes.down('lg')]: {
       width: '25%',
-      height: (props) => (props.showMore ? '20%' : '50%'),
+      height: (props) => (props.showMore ? '20%' : '33.33%'),
     },
     [sizes.down('md')]: {
       width: '33.33%',
-      height: (props) => (props.showMore ? '14.28%' : '50%'),
+      height: (props) => (props.showMore ? '14.28%' : '25%'),
     },
     [sizes.down('sm')]: {
       width: '50%',
-      height: (props) => (props.showMore ? '10%' : '50%'),
+      height: (props) => (props.showMore ? '10%' : '20%'),
     },
     [sizes.down('xs')]: {
       width: '100%',
@@ -67,6 +67,10 @@ export default {
     cursor: 'pointer',
     opacity: 0,
     transition: 'all .2s ease-out',
+    [sizes.down('xs')]: {
+      padding: '0.2rem 1.2rem',
+      fontSize: '0.8rem',
+    },
   },
   boxContent: {
     position: 'absolute',
@@ -119,6 +123,15 @@ export default {
       fontSize: '1.5rem',
       fontWeight: '600',
       marginTop: '-3rem',
+      [sizes.down('xs')]: {
+        marginTop: '-1rem',
+      },
+    },
+    [sizes.down('sm')]: {
+      fontSize: '2.7rem',
+    },
+    [sizes.down('xs')]: {
+      fontSize: '2rem',
     },
   },
   showMessage: {
