@@ -1,10 +1,8 @@
 // dependencies
-import { withStyles } from '@material-ui/core/styles'; // css in js
+import { withStyles } from '@material-ui/core/styles';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// component
 import MiniPalette from './MiniPalette';
-// Styles
 import styles from './styles/PaletteListStyles';
 
 class PaletteList extends Component {
@@ -14,7 +12,7 @@ class PaletteList extends Component {
   }
 
   render() {
-    const { classes, palettes } = this.props;
+    const { classes, palettes, deletePalette } = this.props;
     return (
       <div className={classes.root}>
         <div className={classes.container}>
@@ -26,8 +24,10 @@ class PaletteList extends Component {
             {palettes.map((palette) => (
               <MiniPalette
                 key={palette.id}
+                id={palette.id}
                 {...palette}
                 handleClick={() => this.goToPalette(palette.id)}
+                deletePalette={deletePalette}
               />
             ))}
           </div>
