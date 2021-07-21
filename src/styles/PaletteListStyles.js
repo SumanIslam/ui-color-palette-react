@@ -2,6 +2,15 @@ import svg from '../assets/background.svg';
 import sizes from '../sizes';
 
 export default {
+  '@global': {
+    '.item-exit': {
+      opacity: 1,
+    },
+    '.item-exit-active': {
+      opacity: 0,
+      transition: 'opacity 500ms ease-in',
+    },
+  },
   root: {
     backgroundColor: 'purple',
     height: '100vh',

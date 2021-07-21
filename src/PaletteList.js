@@ -2,6 +2,7 @@
 import { withStyles } from '@material-ui/core/styles';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import MiniPalette from './MiniPalette';
 import styles from './styles/PaletteListStyles';
 
@@ -20,17 +21,19 @@ class PaletteList extends Component {
             <h1>React Colors</h1>
             <Link to="/palette/new">Create New palette</Link>
           </div>
-          <div className={classes.palettes}>
+          <TransitionGroup className={classes.palettes}>
             {palettes.map((palette) => (
-              <MiniPalette
-                key={palette.id}
-                id={palette.id}
-                {...palette}
-                handleClick={() => this.goToPalette(palette.id)}
-                deletePalette={deletePalette}
-              />
+              <CSSTransition key={palette.id} timeout={500} classNames="item">
+                <MiniPalette
+                  key={palette.id}
+                  id={palette.id}
+                  {...palette}
+                  handleClick={() => this.goToPalette(palette.id)}
+                  deletePalette={deletePalette}
+                />
+              </CSSTransition>
             ))}
-          </div>
+          </TransitionGroup>
         </div>
       </div>
     );
