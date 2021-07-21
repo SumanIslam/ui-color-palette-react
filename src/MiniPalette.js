@@ -4,10 +4,10 @@ import { Component } from 'react';
 import styles from './styles/MiniPaletteStyles';
 
 class MiniPalette extends Component {
-  handleDelete = (e) => {
-    const { deletePalette, id } = this.props;
+  handleDialogue = (e) => {
+    const { openDialogue, id } = this.props;
     e.stopPropagation();
-    deletePalette(id);
+    openDialogue(id);
   };
 
   render() {
@@ -18,7 +18,7 @@ class MiniPalette extends Component {
           <DeleteIcon
             className={classes.deleteIcon}
             style={{ transition: 'all 0.3s ease-in' }}
-            onClick={this.handleDelete}
+            onClick={this.handleDialogue}
           />
           <div className={classes.colors}>
             {colors.map((color) => (
