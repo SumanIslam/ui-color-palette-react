@@ -56,11 +56,15 @@ class PaletteMetaForm extends Component {
 
   render() {
     const { open, newPaletteName, isEmojiOpen } = this.state;
-    // eslint-disable-next-line no-unused-vars
-    const { classes, submitPallete } = this.props;
+    const { classes } = this.props;
     return (
       <div>
-        <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
+        <Button
+          className={classes.buttonFontsize}
+          variant="contained"
+          color="primary"
+          onClick={this.handleClickOpen}
+        >
           Save Palette
         </Button>
         <Dialog open={isEmojiOpen} onClose={this.handleClose}>

@@ -48,6 +48,7 @@ class Palette extends Component {
           changeLevel={this.changeLevel}
           handleChange={this.changeFormat}
           showingSlider
+          showingBack
         />
         {/* color boxes goes here */}
         <div className={classes.colors}>{colorBoxes}</div>

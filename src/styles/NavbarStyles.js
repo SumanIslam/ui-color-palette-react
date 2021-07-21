@@ -1,3 +1,5 @@
+import sizes from '../sizes';
+
 export default {
   navbar: {
     display: 'flex',
@@ -19,6 +21,12 @@ export default {
       color: 'black',
     },
   },
+  Level: {
+    fontSize: '100%',
+    [sizes.down('xs')]: {
+      fontSize: '90%',
+    },
+  },
   sliderContainer: {
     display: 'flex',
     justifyContent: 'center',
@@ -30,6 +38,9 @@ export default {
   slider: {
     width: '200px',
     margin: '0 1rem',
+    [sizes.down('sm')]: {
+      width: '180px',
+    },
     '& .rc-slider-rail': {
       height: '12px',
     },
@@ -50,5 +61,8 @@ export default {
   selectContainer: {
     marginLeft: 'auto',
     marginRight: '1rem',
+    [sizes.down('sm')]: {
+      marginRight: '0',
+    },
   },
 };

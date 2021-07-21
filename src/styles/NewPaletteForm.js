@@ -1,6 +1,6 @@
-// styles
-const drawerWidth = 280;
+import sizes from '../sizes';
 
+const drawerWidth = 300;
 const styles = (theme) => ({
   root: {
     display: 'flex',
@@ -67,8 +67,11 @@ const styles = (theme) => ({
     justifyContent: 'space-evenly',
     marginBottom: '1rem',
   },
-  buttonFontSize: {
+  buttonFontsize: {
     fontSize: '0.75rem',
+    [sizes.down('xs')]: {
+      fontSize: '0.5rem',
+    },
   },
   chromePicker: {
     display: 'block',
@@ -85,10 +88,14 @@ const styles = (theme) => ({
     display: 'block',
     margin: '0 auto',
   },
+  typographyFontSize: {
+    [sizes.down('xs')]: {
+      fontSize: '90%',
+    },
+  },
   toolbarButton: {
     marginLeft: 'auto',
     display: 'flex',
-    justifyContent: 'space-evenly',
     '& a': {
       textDecoration: 'none',
     },

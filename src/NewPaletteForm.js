@@ -121,7 +121,7 @@ class NewPaletteForm extends Component {
             <h2 className={classes.textAlignCenter}>Design Your Palette</h2>
             <div className={classes.buttonContainer}>
               <Button
-                className={classes.buttonFontSize}
+                className={classes.buttonFontsize}
                 variant="contained"
                 color="secondary"
                 onClick={this.clearPalette}
@@ -129,7 +129,7 @@ class NewPaletteForm extends Component {
                 Clear Palette
               </Button>
               <Button
-                className={classes.buttonFontSize}
+                className={classes.buttonFontsize}
                 variant="contained"
                 color="primary"
                 onClick={this.getRandomColor}

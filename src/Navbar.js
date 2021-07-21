@@ -32,16 +32,19 @@ class Navbar extends Component {
   }
 
   render() {
-    const { level, changeLevel, showingSlider, classes } = this.props;
+    const { level, changeLevel, showingSlider, showingBack, classes } = this.props;
     const { format, open } = this.state;
     return (
       <nav className={classes.navbar}>
-        <div className={classes.logo}>
-          <Link to="/">reactcolorpicker</Link>
-        </div>
+        {showingBack && (
+          <div className={classes.logo}>
+            <Link to="/">&larr;</Link>
+          </div>
+        )}
+
         {showingSlider && (
           <div className={classes.sliderContainer}>
-            <span>Level: [{level}]</span>
+            <span className={classes.Level}>Level: [{level}]</span>
             <div className={classes.slider}>
               <Slider
                 defaultValue={level}

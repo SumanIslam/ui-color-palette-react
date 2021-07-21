@@ -33,13 +33,18 @@ const PaletteFormNav = (props) => {
             <MenuIcon />
           </IconButton>
           {/* app bar title and buttons goes here */}
-          <Typography variant="h6" color="inherit" noWrap>
+          <Typography className={classes.typographyFontSize} variant="h6" color="inherit" noWrap>
             Create A Palette
           </Typography>
 
           <div className={classes.toolbarButton}>
             <Link to="/">
-              <Button style={{ marginRight: '0.5rem' }} variant="contained" color="secondary">
+              <Button
+                className={classes.buttonFontsize}
+                style={{ marginRight: '0.5rem' }}
+                variant="contained"
+                color="secondary"
+              >
                 Go Back
               </Button>
             </Link>
