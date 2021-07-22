@@ -44,7 +44,7 @@ class NewPaletteForm extends Component {
     this.setState({ colors: [...colors, newColor] });
   };
 
-  // remove draggable color
+  // remove draggable colorbox
   removeColor = (colorName) => {
     const { colors } = this.state;
     this.setState({
