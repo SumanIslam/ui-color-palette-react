@@ -38,10 +38,10 @@ class PaletteList extends Component {
     this.setState({ open: false }, deletePalette(deletingId));
   };
 
-  goToPalette(id) {
+  goToPalette = (id) => {
     // eslint-disable-next-line react/destructuring-assignment
     this.props.history.push(`/palette/${id}`);
-  }
+  };
 
   render() {
     const { open } = this.state;

@@ -12,14 +12,14 @@ import ColorPickerForm from './ColorPickerForm';
 import DraggableColorList from './DraggableColorList';
 import PaletteFormNav from './PaletteFormNav';
 import styles from './styles/NewPaletteForm';
+import SeedColors from './SeedColors';
 
 class NewPaletteForm extends Component {
   constructor(props) {
     super(props);
-    const { palettes } = this.props;
     this.state = {
       open: true,
-      colors: palettes[0].colors,
+      colors: SeedColors[0].colors,
     };
   }
 
@@ -59,9 +59,8 @@ class NewPaletteForm extends Component {
 
   // get random color
   getRandomColor = () => {
-    const { palettes } = this.props;
     const { colors } = this.state;
-    const allColors = palettes.map((palette) => palette.colors).flat();
+    const allColors = SeedColors.map((palette) => palette.colors).flat();
     const randomColor = allColors[Math.floor(Math.random() * allColors.length)];
     this.setState({
       colors: [...colors, randomColor],
