@@ -11,8 +11,8 @@ import React, { Component } from 'react';
 import ColorPickerForm from './ColorPickerForm';
 import DraggableColorList from './DraggableColorList';
 import PaletteFormNav from './PaletteFormNav';
-import styles from './styles/NewPaletteForm';
 import SeedColors from './SeedColors';
+import styles from './styles/NewPaletteForm';
 
 class NewPaletteForm extends Component {
   constructor(props) {
@@ -61,7 +61,13 @@ class NewPaletteForm extends Component {
   getRandomColor = () => {
     const { colors } = this.state;
     const allColors = SeedColors.map((palette) => palette.colors).flat();
-    const randomColor = allColors[Math.floor(Math.random() * allColors.length)];
+    let randomColor;
+    let isDuplicateColor = true;
+    while (isDuplicateColor) {
+      randomColor = allColors[Math.floor(Math.random() * allColors.length)];
+      // eslint-disable-next-line no-loop-func
+      isDuplicateColor = colors.some((color) => color.name === randomColor.name);
+    }
     this.setState({
       colors: [...colors, randomColor],
     });

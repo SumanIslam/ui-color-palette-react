@@ -75,6 +75,11 @@ class App extends Component {
             />
           )}
         />
+        <Route
+          render={(routeProps) => (
+            <PaletteList palettes={palettes} {...routeProps} deletePalette={this.deletePalette} />
+          )}
+        />
       </Switch>
     );
   }
