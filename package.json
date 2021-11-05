@@ -1,50 +1,54 @@
 {
-  "name": "ui-color-palettes",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@material-ui/core": "^4.11.4",
-    "@material-ui/icons": "^4.11.2",
-    "@material-ui/styles": "^4.11.4",
-    "array-move": "^3.0.1",
-    "chroma-js": "^2.1.2",
-    "classnames": "^2.3.1",
-    "emoji-mart": "^3.0.1",
-    "rc-slider": "^9.7.2",
-    "react": "^17.0.2",
-    "react-color": "^2.19.3",
-    "react-copy-to-clipboard": "^5.0.3",
-    "react-dom": "^17.0.2",
-    "react-material-ui-form-validator": "^2.1.4",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.3",
-    "react-sortable-hoc": "^2.0.0",
-    "react-transition-group": "^4.4.2",
-    "rgb-hex": "^4.0.0",
-    "uuid": "^8.3.2"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "yarn add -D prettier && yarn add -D babel-eslint && npx install-peerdeps --dev eslint-config-airbnb && yarn add -D eslint-config-prettier eslint-plugin-prettier"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "devDependencies": {
-    "eslint": "^7.29.0",
-    "eslint-config-airbnb": "18.2.1",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "2.22.1",
-    "eslint-plugin-jsx-a11y": "6.4.1",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-react": "7.21.5",
-    "eslint-plugin-react-hooks": "1.7.0",
-    "prettier": "^2.3.0"
-  }
+	"name": "ui-color-palettes",
+	"version": "0.1.0",
+	"engines": {
+		"node": "13.14.0",
+		"npm": "6.14.4"
+	},
+	"private": true,
+	"dependencies": {
+		"@material-ui/core": "^4.11.4",
+		"@material-ui/icons": "^4.11.2",
+		"@material-ui/styles": "^4.11.4",
+		"array-move": "^3.0.1",
+		"chroma-js": "^2.1.2",
+		"classnames": "^2.3.1",
+		"emoji-mart": "^3.0.1",
+		"rc-slider": "^9.7.2",
+		"react": "^17.0.2",
+		"react-color": "^2.19.3",
+		"react-copy-to-clipboard": "^5.0.3",
+		"react-dom": "^17.0.2",
+		"react-material-ui-form-validator": "^2.1.4",
+		"react-router-dom": "^5.2.0",
+		"react-scripts": "^4.0.3",
+		"react-sortable-hoc": "^2.0.0",
+		"react-transition-group": "^4.4.2",
+		"rgb-hex": "^4.0.0",
+		"uuid": "^8.3.2"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject",
+		"lint": "yarn add -D prettier && yarn add -D babel-eslint && npx install-peerdeps --dev eslint-config-airbnb && yarn add -D eslint-config-prettier eslint-plugin-prettier"
+	},
+	"browserslist": [
+		">0.2%",
+		"not dead",
+		"not ie <= 11",
+		"not op_mini all"
+	],
+	"devDependencies": {
+		"eslint": "^7.29.0",
+		"eslint-config-airbnb": "18.2.1",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-import": "2.22.1",
+		"eslint-plugin-jsx-a11y": "6.4.1",
+		"eslint-plugin-prettier": "^3.4.0",
+		"eslint-plugin-react": "7.21.5",
+		"eslint-plugin-react-hooks": "1.7.0",
+		"prettier": "^2.3.0"
+	}
 }
